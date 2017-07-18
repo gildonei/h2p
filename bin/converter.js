@@ -49,7 +49,9 @@ try {
     }
 
     // Take all options in one JSON param
-    var options = JSON.parse(args[1]);
+    // Decode the provided base64 encoded string then parse it as JSON to use as our parameters.
+ 	var decoded_base64 = atob(args[1]),
+ 		options = JSON.parse(decoded_base64);
 
     page.customHeaders = options.request.headers;
     phantom.cookies = options.request.cookies;
